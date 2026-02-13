@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Deepu ❤️ Vijay — Forever 💍</title>
+
+<style>
+* { box-sizing: border-box; font-family: 'Segoe UI', cursive; }
+
+/* 🌈 MULTICOLOR ANIMATED BACKGROUND */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.card {
+  background: rgba(255,255,255,0.95);
+  width: 450px;
+  padding: 34px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  transition: 0.6s;
+}
+
+h1 { color: #d00000; }
+
+p {
+  color: #444;
+  font-size: 16px;
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+
+button {
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.yes {
+  background: linear-gradient(45deg, #ff4e50, #f9d423);
+  color: white;
+}
+
+.no {
+  background: #ddd;
+  position: absolute;
+}
+
+.hidden { display: none; }
+
+.buttons { position: relative; height: 90px; }
+
+/* ❤️ Floating Hearts */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* 📸 Slideshow */
+.slideshow img {
+  width: 100%;
+  border-radius: 18px;
+  animation: fade 1.5s;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+  <!-- PAGE 1 -->
+  <div id="page1">
+    <h1>Deepu ❤️</h1>
+    <p>
+      From 2020 to today…
+      six beautiful years.
+
+      This is our love story.
+      — Vijay
+    </p>
+    <button class="yes" onclick="nextPage(1); playMusic();">Open My Heart 💖</button>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div id="page2" class="hidden">
+    <h1>Six Years Together ⏳</h1>
+    <p>
+      We laughed.
+      We cried.
+      We learned.
+      We stayed.
+
+      And that means everything.
+    </p>
+    <button class="yes" onclick="nextPage(2)">Continue 💕</button>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div id="page3" class="hidden">
+    <h1>Our Memories 📸</h1>
+    <div class="slideshow">
+      <img id="slide" src="photo1.jpg">
+    </div>
+    <button class="yes" onclick="nextPage(3)">Next ❤️</button>
+  </div>
+
+  <!-- PAGE 4 -->
+  <div id="page4" class="hidden">
+    <h1>My Promise 🤞</h1>
+    <p>
+      I promise respect.
+      I promise patience.
+      I promise effort.
+
+      I promise forever.
+    </p>
+    <button class="yes" onclick="nextPage(4)">One Last Question 💍</button>
+  </div>
+
+  <!-- PAGE 5 -->
+  <div id="page5" class="hidden">
+    <h1>Deepu 💍</h1>
+    <p>
+      We began in 2020.
+      After six years,
+      I don’t want a future without you.
+
+      Will you marry me?
+    </p>
+
+    <div class="buttons">
+      <button class="yes" onclick="sheSaidYes()">YES 😭❤️</button>
+      <button class="no" id="noBtn" onmouseover="moveNo()">NO 💔</button>
+    </div>
+  </div>
+
+  <!-- PAGE 6 -->
+  <div id="page6" class="hidden">
+    <h1>She Said YES 💖💍</h1>
+    <p>
+      Deepu ❤️ Vijay  
+      2020 → Forever  
+
+      Our story continues…
+    </p>
+  </div>
+
+</div>
+
+<script>
+function nextPage(n) {
+  document.getElementById(`page${n}`).classList.add("hidden");
+  document.getElementById(`page${n+1}`).classList.remove("hidden");
+}
+
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+function moveNo() {
+  const noBtn = document.getElementById("noBtn");
+  noBtn.style.left = Math.random() * 260 + "px";
+  noBtn.style.top = Math.random() * 120 + "px";
+}
+
+function sheSaidYes() {
+  document.getElementById("page5").classList.add("hidden");
+  document.getElementById("page6").classList.remove("hidden");
+}
+
+/* PHOTO SLIDESHOW */
+const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
+let index = 0;
+
+setInterval(() => {
+  const img = document.getElementById("slide");
+  if (img) {
+    index = (index + 1) % photos.length;
+    img.src = photos[index];
+  }
+}, 2500);
+
+/* FLOATING HEARTS */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
